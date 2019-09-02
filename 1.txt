@@ -1,0 +1,237 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 50724
+ Source Host           : localhost:3306
+ Source Schema         : jpa
+
+ Target Server Type    : MySQL
+ Target Server Version : 50724
+ File Encoding         : 65001
+
+ Date: 20/08/2019 11:51:32
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for item_category
+-- ----------------------------
+DROP TABLE IF EXISTS `item_category`;
+CREATE TABLE `item_category`  (
+  `ITEM_ID` int(11) NOT NULL,
+  `CATEGORY_ID` int(11) NOT NULL,
+  PRIMARY KEY (`ITEM_ID`, `CATEGORY_ID`) USING BTREE,
+  UNIQUE INDEX `idx_itemid_categoryid`(`ITEM_ID`, `CATEGORY_ID`) USING BTREE COMMENT '联合唯一索引',
+  INDEX `FK_gtonlc7pn4w3o4yljbkj9n7wj`(`CATEGORY_ID`) USING BTREE,
+  INDEX `FK_6ui7ejm313518nu71evuhstxy`(`ITEM_ID`) USING BTREE,
+  CONSTRAINT `FK_6ui7ejm313518nu71evuhstxy` FOREIGN KEY (`ITEM_ID`) REFERENCES `jpa_items` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_gtonlc7pn4w3o4yljbkj9n7wj` FOREIGN KEY (`CATEGORY_ID`) REFERENCES `jpa_categories` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of item_category
+-- ----------------------------
+INSERT INTO `item_category` VALUES (1, 1);
+INSERT INTO `item_category` VALUES (2, 1);
+INSERT INTO `item_category` VALUES (1, 2);
+INSERT INTO `item_category` VALUES (2, 2);
+INSERT INTO `item_category` VALUES (3, 3);
+INSERT INTO `item_category` VALUES (4, 3);
+INSERT INTO `item_category` VALUES (3, 4);
+INSERT INTO `item_category` VALUES (4, 4);
+
+-- ----------------------------
+-- Table structure for jpa_addresses
+-- ----------------------------
+DROP TABLE IF EXISTS `jpa_addresses`;
+CREATE TABLE `jpa_addresses`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `city` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `province` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for jpa_categories
+-- ----------------------------
+DROP TABLE IF EXISTS `jpa_categories`;
+CREATE TABLE `jpa_categories`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `CATEGORY_NAME` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of jpa_categories
+-- ----------------------------
+INSERT INTO `jpa_categories` VALUES (1, 'C-1');
+INSERT INTO `jpa_categories` VALUES (2, 'C-2');
+INSERT INTO `jpa_categories` VALUES (3, 'C-1');
+INSERT INTO `jpa_categories` VALUES (4, 'C-2');
+
+-- ----------------------------
+-- Table structure for jpa_cutomers
+-- ----------------------------
+DROP TABLE IF EXISTS `jpa_cutomers`;
+CREATE TABLE `jpa_cutomers`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `age` int(11) NOT NULL,
+  `birth` date NULL DEFAULT NULL,
+  `createdTime` datetime(0) NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `lastName` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `LAST_NAME` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of jpa_cutomers
+-- ----------------------------
+INSERT INTO `jpa_cutomers` VALUES (2, 11, '2019-04-26', '2019-04-26 15:41:02', '222@qq.com', 'AA', '');
+INSERT INTO `jpa_cutomers` VALUES (3, 10, '2019-04-26', '2019-04-26 15:45:27', '333@qq.com', 'pp', '');
+INSERT INTO `jpa_cutomers` VALUES (4, 18, '2019-04-26', '2019-04-26 15:59:17', 'dd@163.com', 'DD', '');
+INSERT INTO `jpa_cutomers` VALUES (5, 18, '2019-04-26', '2019-04-26 15:54:12', 'cc@163.com', 'CC', '');
+INSERT INTO `jpa_cutomers` VALUES (6, 18, '2019-04-26', '2019-04-26 15:55:11', 'dd@163.com', 'DD', '');
+INSERT INTO `jpa_cutomers` VALUES (7, 18, '2019-04-26', '2019-04-26 17:37:46', 'gg@163.com', 'FFF', '');
+INSERT INTO `jpa_cutomers` VALUES (9, 18, '2019-04-29', '2019-04-29 10:23:11', 'mm@163.com', 'MM', '');
+INSERT INTO `jpa_cutomers` VALUES (10, 18, '2019-04-30', '2019-04-30 17:19:13', 'mm@163.com', 'MM', '');
+INSERT INTO `jpa_cutomers` VALUES (11, 18, '2019-04-30', '2019-04-30 17:22:02', 'mm@163.com', 'MM', '');
+INSERT INTO `jpa_cutomers` VALUES (12, 18, '2019-04-30', '2019-04-30 17:38:40', 'mm@163.com', 'YYY', '');
+
+-- ----------------------------
+-- Table structure for jpa_cutomers_20190628
+-- ----------------------------
+DROP TABLE IF EXISTS `jpa_cutomers_20190628`;
+CREATE TABLE `jpa_cutomers_20190628`  (
+  `id` int(11) NOT NULL DEFAULT 0,
+  `age` int(11) NOT NULL,
+  `birth` date NULL DEFAULT NULL,
+  `createdTime` datetime(0) NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `lastName` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `LAST_NAME` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of jpa_cutomers_20190628
+-- ----------------------------
+INSERT INTO `jpa_cutomers_20190628` VALUES (2, 11, '2019-04-26', '2019-04-26 15:41:02', '222@qq.com', 'AA', '');
+INSERT INTO `jpa_cutomers_20190628` VALUES (3, 10, '2019-04-26', '2019-04-26 15:45:27', '333@qq.com', 'pp', '');
+INSERT INTO `jpa_cutomers_20190628` VALUES (4, 18, '2019-04-26', '2019-04-26 15:59:17', 'dd@163.com', 'DD', '');
+INSERT INTO `jpa_cutomers_20190628` VALUES (5, 18, '2019-04-26', '2019-04-26 15:54:12', 'cc@163.com', 'CC', '');
+INSERT INTO `jpa_cutomers_20190628` VALUES (6, 18, '2019-04-26', '2019-04-26 15:55:11', 'dd@163.com', 'DD', '');
+INSERT INTO `jpa_cutomers_20190628` VALUES (7, 18, '2019-04-26', '2019-04-26 17:37:46', 'gg@163.com', 'FFF', '');
+INSERT INTO `jpa_cutomers_20190628` VALUES (9, 18, '2019-04-29', '2019-04-29 10:23:11', 'mm@163.com', 'MM', '');
+INSERT INTO `jpa_cutomers_20190628` VALUES (10, 18, '2019-04-30', '2019-04-30 17:19:13', 'mm@163.com', 'MM', '');
+INSERT INTO `jpa_cutomers_20190628` VALUES (11, 18, '2019-04-30', '2019-04-30 17:22:02', 'mm@163.com', 'MM', '');
+INSERT INTO `jpa_cutomers_20190628` VALUES (12, 18, '2019-04-30', '2019-04-30 17:38:40', 'mm@163.com', 'YYY', '');
+
+-- ----------------------------
+-- Table structure for jpa_departments
+-- ----------------------------
+DROP TABLE IF EXISTS `jpa_departments`;
+CREATE TABLE `jpa_departments`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `DEPT_NAME` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `MGR_ID` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `UK_1mywrlaw9wh2ogbx5vq85uvtn`(`MGR_ID`) USING BTREE,
+  INDEX `FK_1mywrlaw9wh2ogbx5vq85uvtn`(`MGR_ID`) USING BTREE,
+  CONSTRAINT `FK_1mywrlaw9wh2ogbx5vq85uvtn` FOREIGN KEY (`MGR_ID`) REFERENCES `jpa_managers` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of jpa_departments
+-- ----------------------------
+INSERT INTO `jpa_departments` VALUES (1, 'D-BB', 1);
+INSERT INTO `jpa_departments` VALUES (2, 'D-BB', 2);
+INSERT INTO `jpa_departments` VALUES (3, 'D-BB', 3);
+INSERT INTO `jpa_departments` VALUES (4, 'D-BB', NULL);
+
+-- ----------------------------
+-- Table structure for jpa_items
+-- ----------------------------
+DROP TABLE IF EXISTS `jpa_items`;
+CREATE TABLE `jpa_items`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ITEM_NAME` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of jpa_items
+-- ----------------------------
+INSERT INTO `jpa_items` VALUES (1, 'i-1');
+INSERT INTO `jpa_items` VALUES (2, 'i-2');
+INSERT INTO `jpa_items` VALUES (3, 'i-1');
+INSERT INTO `jpa_items` VALUES (4, 'i-2');
+
+-- ----------------------------
+-- Table structure for jpa_managers
+-- ----------------------------
+DROP TABLE IF EXISTS `jpa_managers`;
+CREATE TABLE `jpa_managers`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `MGR_NAME` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of jpa_managers
+-- ----------------------------
+INSERT INTO `jpa_managers` VALUES (1, 'M-BB');
+INSERT INTO `jpa_managers` VALUES (2, 'M-BB');
+INSERT INTO `jpa_managers` VALUES (3, 'M-BB');
+INSERT INTO `jpa_managers` VALUES (4, 'M-BB');
+
+-- ----------------------------
+-- Table structure for jpa_orders
+-- ----------------------------
+DROP TABLE IF EXISTS `jpa_orders`;
+CREATE TABLE `jpa_orders`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `orderName` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `customer_id` int(11) NULL DEFAULT NULL,
+  `ORDER_NAME` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FK_t06utprp6k3jxvfbkpjbuy2sg`(`customer_id`) USING BTREE,
+  CONSTRAINT `FK_t06utprp6k3jxvfbkpjbuy2sg` FOREIGN KEY (`customer_id`) REFERENCES `jpa_cutomers` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of jpa_orders
+-- ----------------------------
+INSERT INTO `jpa_orders` VALUES (2, 'G-GG-2', 7, NULL);
+INSERT INTO `jpa_orders` VALUES (3, 'G-GG-1', NULL, NULL);
+INSERT INTO `jpa_orders` VALUES (4, 'G-GG-2', NULL, NULL);
+INSERT INTO `jpa_orders` VALUES (5, 'O-XXX-10', 9, NULL);
+INSERT INTO `jpa_orders` VALUES (6, 'O-MM-2', 9, NULL);
+INSERT INTO `jpa_orders` VALUES (7, 'O-MM-1', 10, NULL);
+INSERT INTO `jpa_orders` VALUES (8, 'O-MM-2', 10, NULL);
+INSERT INTO `jpa_orders` VALUES (9, 'O-MM-1', 11, NULL);
+INSERT INTO `jpa_orders` VALUES (10, 'O-MM-2', 11, NULL);
+INSERT INTO `jpa_orders` VALUES (11, 'O-MM-1', 12, NULL);
+INSERT INTO `jpa_orders` VALUES (12, 'O-MM-2', 12, NULL);
+
+-- ----------------------------
+-- Table structure for jpa_persons
+-- ----------------------------
+DROP TABLE IF EXISTS `jpa_persons`;
+CREATE TABLE `jpa_persons`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `age` int(11) NOT NULL,
+  `email` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `LAST_NAME` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `add_id` int(11) NULL DEFAULT NULL,
+  `birth` datetime(0) NULL DEFAULT NULL,
+  `address_id` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FK_56686o67ve8p9x4eew6bhebdb`(`address_id`) USING BTREE,
+  CONSTRAINT `FK_56686o67ve8p9x4eew6bhebdb` FOREIGN KEY (`address_id`) REFERENCES `jpa_addresses` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
