@@ -19,6 +19,8 @@ import java.nio.file.StandardOpenOption;
  * 3. 为什么会阻塞？？
  *
  *
+ * 如果每次读取 或者 写入 都创建新的 channel 应该就没问题了
+ *
  *
  * @author lipengyu
  * @date 2019/9/2 9:29
